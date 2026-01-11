@@ -5,6 +5,7 @@ Basically just a while loop that picks a specific video to run. The video (in th
 It should be noted that VLC media player should be installed prior to running the script, check below:
 
 *RUN THIS*
+
 --------------------------------
 
 sudo apt update
