@@ -6,9 +6,11 @@ It should be noted that VLC media player should be installed prior to running th
 
 *RUN THIS*
 --------------------------------
+
 sudo apt update
 
 sudo apt install -y vlc
+
 --------------------------------
 
 I will add comments to a lot of things, I think it helps me learn and reinforce concepts
