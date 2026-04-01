@@ -15,3 +15,9 @@ sudo apt install -y vlc
 --------------------------------
 
 I will add comments to a lot of things, I think it helps me learn and reinforce concepts
+--------------------------------
+
+*How to setup/shutoff*
+
+python3 VideoJumpscare/jumpScare.py
+
