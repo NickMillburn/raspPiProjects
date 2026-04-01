@@ -17,25 +17,25 @@ def playvideo(videoPath: Path):
     #--no-video-title-show = kills the ui
     #--play-and-exit = closes when the video ends
 
-    subprocess.Popen(["cvlc", 
+    subprocess.Popen(["cvlc",
         "--fullscreen",
         "--no-video-title-show",
         "--play-and-exit",
         str(videoPath),
     ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
-    def main():
-        if not videoPath.exists():
-            raise FileNotFoundError(f"Fuck you buddy there's no video for me here")
+def main():
+    if not videoPath.exists():
+        raise FileNotFoundError(f"Fuck you buddy there's no video for me here")
 
-        while True:
-            roll = random.randrange(x)
-            if roll == 0:
-                playvideo(videoPath)
-                #Cool down just in case we get the 1/x^2 chance of it playing twice in a row
-                time.sleep(5)
-            time.sleep(videoInterval)
+    while True:
+        roll = random.randrange(x)
+        if roll == 0:
+            playvideo(videoPath)
+            #Cool down just in case we get the 1/x^2 chance of it playing twice in a row
+            time.sleep(5)
+        time.sleep(videoInterval)
 
 
 if __name__ == "__main__":
-    main() __
+    main()
