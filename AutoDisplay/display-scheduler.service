@@ -1,0 +1,28 @@
+[Unit]
+Description=HDMI Display Scheduler (off at 5PM, on at 7AM)
+# Start after the system is generally ready. multi-user.target is the
+# standard "boot is done" target for non-graphical systems; if you're
+# running a desktop, graphical.target works too but isn't required since
+# vcgencmd doesn't need X/Wayland.
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /usr/local/bin/display_scheduler.py
+
+# Run as root so vcgencmd can access /dev/vcio (the GPU mailbox).
+# On Raspbian/Raspberry Pi OS the 'video' group also has access,
+# but root is simpler for a system service.
+User=root
+
+# Restart automatically if the script crashes or gets OOM-killed.
+Restart=on-failure
+RestartSec=10
+
+# Send stdout/stderr to the journal so `journalctl -u display-scheduler` works.
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+# Enable this service for normal multi-user boot.
+WantedBy=multi-user.target
