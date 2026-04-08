@@ -1,0 +1,25 @@
+[Unit]
+Description=HDMI Display Scheduler (off at 5PM, on at 7AM)
+# Wait for the graphical session to be up so the Wayland compositor
+# socket exists before we try to talk to it.
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /usr/local/bin/display_scheduler.py
+
+# Must run as the desktop user so wlr-randr can access the Wayland
+# compositor socket at /run/user/<uid>/wayland-0. Running as root
+# would not have access to this socket.
+User=numnuts
+
+# Restart automatically if the script crashes or gets OOM-killed.
+Restart=on-failure
+RestartSec=10
+
+# Send stdout/stderr to the journal so `journalctl -u display-scheduler` works.
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=graphical-session.target
